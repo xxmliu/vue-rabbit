@@ -4,6 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
+  <!-- 测试vscode远程推送git -->
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
