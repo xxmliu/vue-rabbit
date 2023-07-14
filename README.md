@@ -1,21 +1,24 @@
-# vue-rabbit
+# 前言
 
-这个模板应该可以帮助你开始使用 vue 3 进行开发
+小兔鲜项目适合已经熟练使用vue2，准备学习vue3的小伙伴作为练习的中型电商项目
 
-## 定制配置
+## 技术栈
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+vue3 + vite + vue-router + pinia + ES6/7 + vueUse + sass + element-plus
 
 ## 项目设置
 
 ```sh
+git clone https://gitee.com/xxmliu/vue-rabbit.git
+cd vue-rabbit
 npm install
 ```
 
-### 编译进行开发
+### 项目运行
 
 ```sh
 npm run dev
+访问 http://localhost:5173
 ```
 
 ### 编译打包
@@ -24,8 +27,14 @@ npm run dev
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+### 目标功能
+Layout页  --  完成
+Home页
+一级分类页
+二级分类页
+商品详情
+登录页
+购物车
+订单页
+支付页
+会员中心
