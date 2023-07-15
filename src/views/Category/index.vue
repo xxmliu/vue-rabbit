@@ -2,18 +2,31 @@
 import { getCategoryAPI } from '@/apis/category'
 import { getBannerAPI } from '@/apis/home'
 import { onMounted, ref } from 'vue';
+// import { watchEffect } from 'vue';
 import { useRoute } from 'vue-router'
 import GoodsItem from '../Home/components/GoodsItem.vue';
+import { onBeforeRouteUpdate } from 'vue-router'
 
 // 获取数量
 const categoryData = ref({})
 const route = useRoute()
-const getCategory = async () => {
-  const res = await getCategoryAPI(route.params.id)
+const getCategory = async (id=route.params.id) => {
+  const res = await getCategoryAPI(id)
   categoryData.value = res.result
 }
 
 onMounted(() => getCategory())
+
+// 性能浪费，使用下方onBeforeRouteUpdate钩子函数
+// watchEffect(() => {
+//   getCategory()
+// })
+
+// 路由参数变化的时候 可以把分类数据接口重新发送
+onBeforeRouteUpdate((to)=>{
+  // 存在问题：使用最新的路由参数请求最新的分类数据
+  getCategory(to.params.id)
+})
 
 // 获取babber
 const bannerList = ref([])
