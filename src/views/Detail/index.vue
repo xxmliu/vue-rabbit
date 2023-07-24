@@ -1,5 +1,6 @@
 <script setup>
 import DetailHot from './components/DetailHot.vue'
+import ImageView from '@/components/ImageView/index.vue'
 import { getDetail } from '@/apis/detail'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router';
@@ -24,7 +25,7 @@ onMounted(()=>getGoods())
             错误原因：goods--开始{} {}.categories -> undefined -> undefined[1]
             1.可选语法?.
             2.v-if手动控制渲染时机 保证只有数据存在才渲染
-           -->
+          -->
           <el-breadcrumb-item :to="{ path: `/category/${goods.categories[1].id}` }">{{ goods.categories[1].name }}
           </el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories[0].id}` }">{{ goods.categories[0].name }}
@@ -38,7 +39,7 @@ onMounted(()=>getGoods())
           <div class="goods-info">
             <div class="media">
               <!-- 图片预览区 -->
-
+              <ImageView/>
               <!-- 统计数量 -->
               <ul class="goods-sales">
                 <li>
