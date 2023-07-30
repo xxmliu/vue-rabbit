@@ -3,6 +3,8 @@ import axios from "axios";
 import 'element-plus/es/components/message/style/css'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores/user'
+import router from '@/router';
+
 const httpInstance = axios.create({
   baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
   timeout: 5000
@@ -24,11 +26,19 @@ httpInstance.interceptors.request.use(config => {
 
 // axios响应式拦截器
 httpInstance.interceptors.response.use(res => res.data, e => {
+  const userStore = useUserStore()
   // 统一错误提示
   ElMessage({
     type: 'warning',
     message: e.response.data.message
   })
+  // 401token过期
+  if(e.response.status === 401){
+    // 1.清除本地用户数据
+    userStore.clearUserInfo()
+    // 2.跳转到登录页
+    router.push('/login')
+  }
   return Promise.reject(e)
 })
 
