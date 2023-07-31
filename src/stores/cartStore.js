@@ -26,8 +26,15 @@ export const useCartStore = defineStore('cart', () => {
     // 思路：
     // 1.找到要删除项的下标值 - splice
     // 2.使用数组的过滤方法 - filter
-    const idx = cartList.value.findIndex((item)=>skuId === item.skuId)
+    const idx = cartList.value.findIndex((item) => skuId === item.skuId)
     cartList.value.splice(idx,1)
+  }
+
+  // 单选功能
+  const singleCheck = (skuId,selected) => {
+    // 通过skuId找到要修改的那一项 然后把它的selected修改为传过来的selected
+    const item = cartList.value.find((item) => skuId === item.skuId)
+    item.selected = selected
   }
 
   // 计算属性
@@ -40,7 +47,8 @@ export const useCartStore = defineStore('cart', () => {
     allCount,
     allPrice,
     addCart,
-    delCart
+    delCart,
+    singleCheck
   }
 },{
   persist: true,
